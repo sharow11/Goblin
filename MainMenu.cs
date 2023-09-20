@@ -32,7 +32,7 @@ public partial class MainMenu : Node2D
 	
 	private void ButtonPressed()
 	{
-		GetTree().ChangeSceneToFile("res://character_sheet.tscn");
+		GetTree().ChangeSceneToFile("res://CharacterSheet.tscn");
 	}
 
 	private void ButtonExit()
