@@ -32,7 +32,7 @@ public partial class MainMenu : Node2D
 	
 	private void ButtonPressed()
 	{
-		GD.Print("Hello world!");
+		GetTree().ChangeSceneToFile("res://character_sheet.tscn");
 	}
 
 	private void ButtonExit()

@@ -7,6 +7,6 @@
 script = ExtResource("1_nneqm")
 
 [node name="Goblin" type="Sprite2D" parent="."]
-position = Vector2(248.5, 301.5)
-scale = Vector2(0.322266, 0.29541)
+position = Vector2(248.5, 361)
+scale = Vector2(0.322266, 0.353516)
 texture = ExtResource("2_idv3y")
