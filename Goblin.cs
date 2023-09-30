@@ -3,8 +3,8 @@ using Godot;
 
 public class Goblin
 {
-    public string FirstLetter { get; set; }
-    public string ThirdLetter { get; set; }
+	public string FirstLetter { get; set; }
+	public string ThirdLetter { get; set; }
 	public int Stab { get; set; }
 	public int Sneak { get; set; }
 	public int Magic { get; set; }
@@ -12,11 +12,11 @@ public class Goblin
 	public int Teeth { get; set; }
 	public int Hex { get; set; }
 
-    public bool isCreated { get; set; }
+	public bool isCreated { get; set; }
 
-    public Goblin()
-    {
-        FirstLetter = "G";
-        ThirdLetter = "B";
-    }
+	public Goblin()
+	{
+		FirstLetter = "G";
+		ThirdLetter = "B";
+	}
 }

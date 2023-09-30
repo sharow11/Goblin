@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7l04wpbg0nbb"]
 
 [ext_resource type="Script" path="res://MainMenu.cs" id="1_nneqm"]
-[ext_resource type="Texture2D" uid="uid://di8mudel3brot" path="res://Assets/Goblin.jpg" id="2_idv3y"]
+[ext_resource type="Texture2D" uid="uid://b0jd4866q6gl5" path="res://Assets/Goblin.png" id="2_rl7os"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_nneqm")
 
 [node name="Goblin" type="Sprite2D" parent="."]
-position = Vector2(248.5, 361)
-scale = Vector2(0.322266, 0.353516)
-texture = ExtResource("2_idv3y")
+position = Vector2(248, 385.5)
+scale = Vector2(0.23814, 0.257331)
+texture = ExtResource("2_rl7os")

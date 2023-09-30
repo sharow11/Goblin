@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dlsgjm78uaneb" path="res://Assets/CharacterSheet.jpg" id="2_p2ao3"]
 
 [node name="CharacterSheet" type="Node2D"]
-position = Vector2(-1, -13)
+position = Vector2(-6, -16)
 script = ExtResource("1_a7ofh")
 
 [node name="CharacterSheet" type="Sprite2D" parent="."]
