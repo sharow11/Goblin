@@ -15,13 +15,13 @@ public partial class MainMenu : Node2D
 		var button = new Button();
 		button.Text = "Nowa Gra";
 		button.Pressed += ButtonPressed;
-		button.Position = Position with { X = 200.0f,  Y = 200.0f  };
+		button.Position = Position with { X = 400.0f,  Y = 520.0f  };
 		AddChild(button);
 
 		var button2 = new Button();
 		button2.Text = "Wyjście";
 		button2.Pressed += ButtonExit;
-		button2.Position = Position with { X = 200.0f,  Y = 300.0f  };
+		button2.Position = Position with { X = 400.0f,  Y = 620.0f  };
 		AddChild(button2);
 	}
 

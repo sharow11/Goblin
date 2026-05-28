@@ -25,29 +25,29 @@ public partial class CharacterSheet : Node2D
 	public CharacterSheet()
 	{
 			buttonDZG = new Button();
-			buttonDZG.Text = "Rzuć1";
+			buttonDZG.Text = "Rzuć na Stab";
 			buttonDZG.Pressed += InitStab;
-			buttonDZG.Position = Position with { X = 140.0f,  Y = 60.0f  };
+			buttonDZG.Position = Position with { X = 225.0f,  Y = 140.0f  };
 
 			buttonSKR = new Button();
-			buttonSKR.Text = "Rzuć2";
+			buttonSKR.Text = "Rzuć na Sneak";
 			buttonSKR.Pressed += InitSneak;
-			buttonSKR.Position = Position with { X = 140.0f,  Y = 100.0f  };
+			buttonSKR.Position = Position with { X = 225.0f,  Y = 210.0f  };
 
 			buttonCZA = new Button();
-			buttonCZA.Text = "Rzuć3";
+			buttonCZA.Text = "Rzuć na Magie";
 			buttonCZA.Pressed += InitMagic;
-			buttonCZA.Position = Position with { X = 140.0f,  Y = 140.0f  };
+			buttonCZA.Position = Position with { X = 225.0f,  Y = 275.0f  };
 
 			buttonHP = new Button();
-			buttonHP.Text = "Rzuć4";
+			buttonHP.Text = "Rzuć na HP";
 			buttonHP.Pressed += InitHealth;
-			buttonHP.Position = Position with { X = 325.0f,  Y = 60.0f  };
+			buttonHP.Position = Position with { X = 565.0f,  Y = 230.0f  };
 
 			buttonZB = new Button();
-			buttonZB.Text = "Rzuć5";
+			buttonZB.Text = "Rzuć na zęby";
 			buttonZB.Pressed += InitTeeth;
-			buttonZB.Position = Position with { X = 325.0f,  Y = 100.0f  };
+			buttonZB.Position = Position with { X = 675.0f,  Y = 230.0f  };
 	}
 
 	// Called when the node enters the scene tree for the first time.
@@ -60,8 +60,8 @@ public partial class CharacterSheet : Node2D
 
 		var firstLetter = new TextEdit();
 		var thirdLetter = new TextEdit();
-		firstLetter.Position = Position with { X = 310.0f,  Y = 38.0f  };
-		thirdLetter.Position = Position with { X = 345.0f,  Y = 38.0f  };
+		firstLetter.Position = Position with { X = 530.0f,  Y = 50.0f  };
+		thirdLetter.Position = Position with { X = 570.0f,  Y = 50.0f  };
 		firstLetter.Text = goblin.FirstLetter;
 		thirdLetter.Text = goblin.ThirdLetter;
 		firstLetter.Size = new Vector2() { X = 30, Y = 40};
@@ -105,9 +105,12 @@ public partial class CharacterSheet : Node2D
 
 		RemoveChild(buttonDZG);
 
-		textStab = new Label();
-		textStab.Text = goblin.Stab.ToString();
-		textStab.Position = Position with { X = 140.0f,  Y = 60.0f  };
+		textStab = new Label
+		{
+			Text = goblin.Stab.ToString(),
+			Position = Position with { X = 225.0f, Y = 140.0f },
+			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
+		};
 		AddChild(textStab);
 	}
 	private void InitSneak()
@@ -117,9 +120,12 @@ public partial class CharacterSheet : Node2D
 		
 		RemoveChild(buttonSKR);
 
-		textSneak = new Label();
-		textSneak.Text = goblin.Sneak.ToString();
-		textSneak.Position = Position with { X = 140.0f,  Y = 100.0f  };
+		textSneak = new Label
+		{
+			Text = goblin.Sneak.ToString(),
+			Position = Position with { X = 225.0f, Y = 210.0f },
+			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
+		};
 		AddChild(textSneak);
 	}
 	private void InitMagic()
@@ -129,9 +135,12 @@ public partial class CharacterSheet : Node2D
 		
 		RemoveChild(buttonCZA);
 
-		textMagic = new Label();
-		textMagic.Text = goblin.Magic.ToString();
-		textMagic.Position = Position with { X = 140.0f,  Y = 140.0f  };
+		textMagic = new Label
+		{
+			Text = goblin.Magic.ToString(),
+			Position = Position with { X = 225.0f, Y = 275.0f },
+			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
+		};
 		AddChild(textMagic);
 	}
 	private void InitHealth()
@@ -141,9 +150,12 @@ public partial class CharacterSheet : Node2D
 		
 		RemoveChild(buttonHP);
 
-		textHealth = new Label();
-		textHealth.Text = goblin.Health.ToString();
-		textHealth.Position = Position with { X = 325.0f,  Y = 60.0f  };
+		textHealth = new Label
+		{
+			Text = goblin.Health.ToString(),
+			Position = Position with { X = 565.0f, Y = 230.0f },
+			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
+		};
 		AddChild(textHealth);
 	}
 	private void InitTeeth()
@@ -153,9 +165,12 @@ public partial class CharacterSheet : Node2D
 		
 		RemoveChild(buttonZB);
 
-		textTeeth = new Label();
-		textTeeth.Text = goblin.Teeth.ToString();
-		textTeeth.Position = Position with { X = 325.0f,  Y = 90.0f  };
+		textTeeth = new Label()
+		{
+			Text = goblin.Teeth.ToString(),
+			Position = Position with { X = 675.0f, Y = 230.0f },
+			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
+		};
 		AddChild(textTeeth);
 	}
 }

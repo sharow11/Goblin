@@ -1,13 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnup43qfp7cny"]
 
-[ext_resource type="Script" path="res://CharacterSheet.cs" id="1_a7ofh"]
-[ext_resource type="Texture2D" uid="uid://dlsgjm78uaneb" path="res://Assets/CharacterSheet.jpg" id="2_p2ao3"]
+[ext_resource type="Script" uid="uid://bi0ovqbfhy47k" path="res://CharacterSheet.cs" id="1_a7ofh"]
+[ext_resource type="Texture2D" uid="uid://bvgrixy6qg42a" path="res://Assets/CharacterSheet.png" id="2_8fsbn"]
 
 [node name="CharacterSheet" type="Node2D"]
 position = Vector2(-6, -16)
 script = ExtResource("1_a7ofh")
 
 [node name="CharacterSheet" type="Sprite2D" parent="."]
-position = Vector2(248, 314.75)
-scale = Vector2(0.322266, 0.292725)
-texture = ExtResource("2_p2ao3")
+texture = ExtResource("2_8fsbn")
+centered = false
