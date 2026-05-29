@@ -7,4 +7,8 @@ public class Dice
 	{
 		return rnd.Next(1,6);
 	}
+	public static int RollStat()
+	{
+		return rnd.Next(-1,1);
+	}
 }

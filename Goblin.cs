@@ -12,6 +12,8 @@ public class Goblin
 	public int Teeth { get; set; }
 	public int Hex { get; set; }
 
+	public GoblinHat Hat { get; set; }
+
 	public bool isCreated { get; set; }
 
 	public Goblin()

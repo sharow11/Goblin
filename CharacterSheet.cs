@@ -6,11 +6,11 @@ public partial class CharacterSheet : Node2D
 {
 	public Goblin goblin { get; set;}
 
-	private Button buttonDZG;
-	private Button buttonSKR;
-	private Button buttonCZA;
+	private Button buttonSTB;
+	private Button buttonSNK;
+	private Button buttonMAG;
 	private Button buttonHP;
-	private Button buttonZB;
+	private Button buttonTeeth;
 
 	private Label textStab;
 
@@ -22,32 +22,13 @@ public partial class CharacterSheet : Node2D
 
 	private Label textTeeth;
 
+	private bool areStatsRolled = false;
+
+	private int statRolledCount = 0;
+
 	public CharacterSheet()
 	{
-			buttonDZG = new Button();
-			buttonDZG.Text = "Rzuć na Stab";
-			buttonDZG.Pressed += InitStab;
-			buttonDZG.Position = Position with { X = 225.0f,  Y = 140.0f  };
 
-			buttonSKR = new Button();
-			buttonSKR.Text = "Rzuć na Sneak";
-			buttonSKR.Pressed += InitSneak;
-			buttonSKR.Position = Position with { X = 225.0f,  Y = 210.0f  };
-
-			buttonCZA = new Button();
-			buttonCZA.Text = "Rzuć na Magie";
-			buttonCZA.Pressed += InitMagic;
-			buttonCZA.Position = Position with { X = 225.0f,  Y = 275.0f  };
-
-			buttonHP = new Button();
-			buttonHP.Text = "Rzuć na HP";
-			buttonHP.Pressed += InitHealth;
-			buttonHP.Position = Position with { X = 565.0f,  Y = 230.0f  };
-
-			buttonZB = new Button();
-			buttonZB.Text = "Rzuć na zęby";
-			buttonZB.Pressed += InitTeeth;
-			buttonZB.Position = Position with { X = 675.0f,  Y = 230.0f  };
 	}
 
 	// Called when the node enters the scene tree for the first time.
@@ -74,51 +55,64 @@ public partial class CharacterSheet : Node2D
 		{
 			InitButtons();
 		}
-
+		else
+		{
+			InitLabels();
+		}
 	}
 
 	private void InitButtons()
-	{
+	{			
+		buttonSTB = new Button();
+		buttonSTB.Text = "Roll Stab";
+		buttonSTB.Pressed += InitStab;
+		buttonSTB.Position = Position with { X = 225.0f,  Y = 140.0f  };
 
-			AddChild(buttonDZG);
+		buttonSNK = new Button();
+		buttonSNK.Text = "Roll Sneak";
+		buttonSNK.Pressed += InitSneak;
+		buttonSNK.Position = Position with { X = 225.0f,  Y = 210.0f  };
+
+		buttonMAG = new Button();
+		buttonMAG.Text = "Roll Magic";
+		buttonMAG.Pressed += InitMagic;
+		buttonMAG.Position = Position with { X = 225.0f,  Y = 275.0f  };
+
+		buttonHP = new Button();
+		buttonHP.Text = "Roll Health";
+		buttonHP.Pressed += InitHealth;
+		buttonHP.Position = Position with { X = 565.0f,  Y = 230.0f  };
+
+		buttonTeeth = new Button();
+		buttonTeeth.Text = "Roll Teeth";
+		buttonTeeth.Pressed += InitTeeth;
+		buttonTeeth.Position = Position with { X = 675.0f,  Y = 230.0f  };
+
+		AddChild(buttonSTB);
 
 
-			AddChild(buttonSKR);
+		AddChild(buttonSNK);
 
 
-			AddChild(buttonCZA);
+		AddChild(buttonMAG);
 
 
-			AddChild(buttonHP);
+		AddChild(buttonHP);
 
 
-			AddChild(buttonZB);
+		AddChild(buttonTeeth);
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	private void InitLabels()
 	{
-	}
-	private void InitStab()
-	{
-		goblin.Stab = Dice.RollD6();
-
-		RemoveChild(buttonDZG);
-
 		textStab = new Label
 		{
 			Text = goblin.Stab.ToString(),
 			Position = Position with { X = 225.0f, Y = 140.0f },
 			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
 		};
-		AddChild(textStab);
-	}
-	private void InitSneak()
-	{
-		goblin.Sneak = Dice.RollD6();
 
-		
-		RemoveChild(buttonSKR);
+		AddChild(textStab);
 
 		textSneak = new Label
 		{
@@ -127,13 +121,6 @@ public partial class CharacterSheet : Node2D
 			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
 		};
 		AddChild(textSneak);
-	}
-	private void InitMagic()
-	{
-		goblin.Magic = Dice.RollD6();
-
-		
-		RemoveChild(buttonCZA);
 
 		textMagic = new Label
 		{
@@ -142,6 +129,80 @@ public partial class CharacterSheet : Node2D
 			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
 		};
 		AddChild(textMagic);
+
+		textTeeth = new Label()
+		{
+			Text = goblin.Teeth.ToString(),
+			Position = Position with { X = 675.0f, Y = 230.0f },
+			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
+		};
+		AddChild(textTeeth);
+
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+	private void InitStab()
+	{
+		goblin.Stab = Dice.RollStat();
+
+		RemoveChild(buttonSTB);
+
+		textStab = new Label
+		{
+			Text = goblin.Stab.ToString(),
+			Position = Position with { X = 225.0f, Y = 140.0f },
+			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
+		};
+		AddChild(textStab);
+		statRolledCount++;
+		if(statRolledCount == 5)
+		{
+			InitHat();
+		}
+	}
+	private void InitSneak()
+	{
+		goblin.Sneak = Dice.RollStat();
+
+		
+		RemoveChild(buttonSNK);
+
+		textSneak = new Label
+		{
+			Text = goblin.Sneak.ToString(),
+			Position = Position with { X = 225.0f, Y = 210.0f },
+			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
+		};
+		AddChild(textSneak);
+
+		statRolledCount++;
+		if(statRolledCount == 5)
+		{
+			InitHat();
+		}
+	}
+	private void InitMagic()
+	{
+		goblin.Magic = Dice.RollStat();
+
+		
+		RemoveChild(buttonMAG);
+
+		textMagic = new Label
+		{
+			Text = goblin.Magic.ToString(),
+			Position = Position with { X = 225.0f, Y = 275.0f },
+			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
+		};
+		AddChild(textMagic);
+		statRolledCount++;
+		if(statRolledCount == 5)
+		{
+			InitHat();
+		}
 	}
 	private void InitHealth()
 	{
@@ -157,13 +218,18 @@ public partial class CharacterSheet : Node2D
 			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
 		};
 		AddChild(textHealth);
+		statRolledCount++;
+		if(statRolledCount == 5)
+		{
+			InitHat();
+		}
 	}
 	private void InitTeeth()
 	{
 		goblin.Teeth = Dice.RollD6() + Dice.RollD6() + 10;
 
 		
-		RemoveChild(buttonZB);
+		RemoveChild(buttonTeeth);
 
 		textTeeth = new Label()
 		{
@@ -172,5 +238,56 @@ public partial class CharacterSheet : Node2D
 			LabelSettings = new LabelSettings() { FontColor = Colors.Black }
 		};
 		AddChild(textTeeth);
+		statRolledCount++;
+		if(statRolledCount == 5)
+		{
+			InitHat();
+		}
+	}
+	private void InitHat()
+	{
+		Button btnTin = null;
+		Button btnDirty = null;
+		Button btnPointy = null;
+
+		btnTin = new Button();
+		btnTin.Text = "Tin Hat";
+		btnTin.Position = Position with { X = 200.0f, Y = 500.0f };
+		btnTin.Pressed += () =>
+		{
+			goblin.Hat = GoblinHat.TinHat;
+			RemoveChild(btnTin);
+			RemoveChild(btnDirty);
+			RemoveChild(btnPointy);
+			goblin.isCreated = true;
+		};
+
+		btnDirty = new Button();
+		btnDirty.Text = "Dirty Hood";
+		btnDirty.Position = Position with { X = 300.0f, Y = 500.0f };
+		btnDirty.Pressed += () =>
+		{
+			goblin.Hat = GoblinHat.DirtyHood;
+			RemoveChild(btnTin);
+			RemoveChild(btnDirty);
+			RemoveChild(btnPointy);
+			goblin.isCreated = true;
+		};
+
+		btnPointy = new Button();
+		btnPointy.Text = "Pointy Hat";
+		btnPointy.Position = Position with { X = 400.0f, Y = 500.0f };
+		btnPointy.Pressed += () =>
+		{
+			goblin.Hat = GoblinHat.PointyHat;
+			RemoveChild(btnTin);
+			RemoveChild(btnDirty);
+			RemoveChild(btnPointy);
+			goblin.isCreated = true;
+		};
+
+		AddChild(btnTin);
+		AddChild(btnDirty);
+		AddChild(btnPointy);
 	}
 }

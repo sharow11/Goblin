@@ -13,13 +13,13 @@ public partial class MainMenu : Node2D
 	public override void _Ready()
 	{
 		var button = new Button();
-		button.Text = "Nowa Gra";
+		button.Text = "New Game";
 		button.Pressed += ButtonPressed;
 		button.Position = Position with { X = 400.0f,  Y = 520.0f  };
 		AddChild(button);
 
 		var button2 = new Button();
-		button2.Text = "Wyjście";
+		button2.Text = "Exit";
 		button2.Pressed += ButtonExit;
 		button2.Position = Position with { X = 400.0f,  Y = 620.0f  };
 		AddChild(button2);
