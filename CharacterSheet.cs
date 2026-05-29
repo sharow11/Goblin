@@ -11,6 +11,7 @@ public partial class CharacterSheet : Node2D
 	private Button buttonMAG;
 	private Button buttonHP;
 	private Button buttonTeeth;
+	private Button buttonMap;
 
 	private Label textStab;
 
@@ -138,12 +139,32 @@ public partial class CharacterSheet : Node2D
 		};
 		AddChild(textTeeth);
 
+		if(goblin.Hat != GoblinHat.None)
+		{
+			DrawHat();
+		}
+
+		InitMapButton();
+
+	}
+
+	private void InitMapButton()
+	{
+		buttonMap = new Button();
+		buttonMap.Text = "Go to map";
+		buttonMap.Position = Position with { X = 700.0f, Y = 1200.0f };
+		buttonMap.Pressed += () =>
+		{
+			GetTree().ChangeSceneToFile("res://Map.tscn");
+		};
+		AddChild(buttonMap);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 	}
+
 	private void InitStab()
 	{
 		goblin.Stab = Dice.RollStat();
@@ -260,6 +281,8 @@ public partial class CharacterSheet : Node2D
 			RemoveChild(btnDirty);
 			RemoveChild(btnPointy);
 			goblin.isCreated = true;
+			DrawHat();
+			InitMapButton();
 		};
 
 		btnDirty = new Button();
@@ -272,6 +295,8 @@ public partial class CharacterSheet : Node2D
 			RemoveChild(btnDirty);
 			RemoveChild(btnPointy);
 			goblin.isCreated = true;
+			DrawHat();
+			InitMapButton();
 		};
 
 		btnPointy = new Button();
@@ -284,10 +309,33 @@ public partial class CharacterSheet : Node2D
 			RemoveChild(btnDirty);
 			RemoveChild(btnPointy);
 			goblin.isCreated = true;
+			DrawHat();
+			InitMapButton();
 		};
 
 		AddChild(btnTin);
 		AddChild(btnDirty);
 		AddChild(btnPointy);
+	}
+
+	private void DrawHat()
+	{
+		Sprite2D hatSprite = new Sprite2D();
+		switch(goblin.Hat)
+		{
+			case GoblinHat.TinHat:
+				hatSprite.Texture = GD.Load<Texture2D>("res://Assets/TinHat.png");
+				break;
+			case GoblinHat.DirtyHood:
+				hatSprite.Texture = GD.Load<Texture2D>("res://Assets/DirtyHood.png");
+				break;
+			case GoblinHat.PointyHat:
+				hatSprite.Texture = GD.Load<Texture2D>("res://Assets/PointyHat.png");
+				break;
+			default:
+				return;
+		}
+		hatSprite.Position = Position with { X = 450.0f, Y = 820.0f };
+		AddChild(hatSprite);
 	}
 }
